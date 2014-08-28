@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html>
+	<title>&nbsp;</title>
+	<head>
+		<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+		<meta name="viewport" content="user-scalable=no, initial-scale=1, maximum-scale=1, minimum-scale=1, width=device-width;" />
+
+		<link rel="stylesheet" href="http://code.jquery.com/mobile/1.2.0/jquery.mobile-1.2.0.min.css" />
+		<script src="http://code.jquery.com/jquery-1.8.2.min.js"></script>
+		<script src="http://code.jquery.com/mobile/1.2.0/jquery.mobile-1.2.0.min.js"></script>
+		<script type="text/javascript" charset="utf-8" src="cordova.js"></script>
+	</head>
+	<body>
+		<!-- Start of first page I -->
+		<div data-role="page" id="page1">
+			<!-- Header -->
+			<div data-role="header">
+				<h3>Accelerometer Data</h3>
+			</div>
+			<!-- /header -->
+			<!-- Content    -->
+			<div data-role="content">
+				<h3 align="center">Accelerometer Data</h3>
+				<div id="accelerometerData">
+					Obtaining Data...
+				</div>
+			</div>
+			<!-- /content -->
+			
+			<!-- footer -->
+		<!--	<div data-role="footer">
+				<h4>&copy; 2013 Your Name</h4>
+		</div>   -->
+			<!-- /footer -->
+		</div>
+		<!-- /page -->
+
+		<script type="text/javascript">
+		//set event listener to run when the device is ready
+			document.addEventListener("deviceready", onDeviceReady, false);
+			
+			//obtain current accelerometer data
+			function onDeviceReady(){
+			navigator.accelerometer.getCurrentAcceleration(onSuccess, onError);
+			}
+			
+			function onSuccess(acceleration){
+				var accElement = document.getElementById("accelerometerData");
+				
+				accElement.innerHTML =
+				'Acceleration X : ' + acceleration.x + '<br/>' +
+				'Acceleration Y : ' + acceleration.y + '<br/>' +
+				'Acceleration Z : ' + acceleration.z + '<br/>' +
+				'Time Stamp : ' + acceleration.timestamp;
+			}
+			
+			function onError(){
+			 alert("error");
+			}
+		</script>
+	</body>
+</html>
